@@ -21,14 +21,20 @@ def scan_network():
                 parts = ip.split(".")
         # delete last part of the addres so we can make a network address
         # Have to the add a zero then add that zro to our network address
-    def get_network_address(ip):
-        remove_last = parts.pop()
-        parts.append("0")
-        network_address =".".join(parts)
-        print("Network Adress: ",network_address)
-       
+    return ip_list 
 
-        
+def get_network_address(ip):
+    parts = ip.split(".")
+    parts.pop()
+    parts.append("0")
+    network_address =".".join(parts)
+    print("Network Adress: ",network_address)
+    return network_address
+
+ips = scan_network()  
+if ips:
+    network = get_network_address(ips[0])   
+    print(network)  
               
 
 
