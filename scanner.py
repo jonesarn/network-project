@@ -17,9 +17,6 @@ def scan_network():
        # print(ip_list ,"is reachable")
             ip_list.append(ip)
             print(ip_list," are reachable")
-            parts = ip.split(".")
-            for ip in ip_list:
-                parts = ip.split(".")
         # delete last part of the addres so we can make a network address
         # Have to the add a zero then add that zro to our network address
     return ip_list 
