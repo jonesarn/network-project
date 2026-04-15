@@ -1,5 +1,6 @@
 import os
 import platform
+import subprocess
 def scan_network():
     network_base = "192.168.1."
     ip_list = []
@@ -30,12 +31,34 @@ def get_network_address(ip):
     network_address =".".join(parts)
     print("Network Adress: ",network_address)
     return network_address
+## Now lets add our mac address
+   
+def get_mac_address(ip_list):
+    arp_output = subprocess.getoutput("arp -a")
+    lines = arp_output.split("\n")
 
+    ip_mac ={}
+
+    for line in lines:
+        for ip in ip_list:
+            if f"({ip})" in line:
+                parts = line.split()
+                mac = parts[3]
+                ip_mac[ip]= mac
+        return ip_mac
+    
+
+## How this runs is I call unto scan network. This scan network allows you to see every IP address availaible in my private etwork
+### I then use that to show my network address. They should all be the same so it list every device then shows the network address
 ips = scan_network()  
 if ips:
     network = get_network_address(ips[0])   
-    print(network)  
-              
+    print(network)
+
+macs = get_mac_address(ips)
+print(macs)  
+     
+
 
 
 
