@@ -1,25 +1,34 @@
 import os
 import platform
 import subprocess
+
 def scan_network():
-    network_base = "192.168.1."
+    network_bases = "192.168.1.","10.0.0.","176.16.1."
     ip_list = []
+    
     if platform.system() == "Windows":
-        ping_command = "-n 1"
+        ping_command = "-n"
     else:
-        ping_command = "-c 1"
+        ping_command = "-c"
 # Notes: We are leaving that blank so we can find multiple devices on this private IP
-    for i in range(74,81):
-        ip = network_base + str(i)
+    for base in network_bases:
+        for i in range(1,255):
+            ip = base + str(i)
+
 # Doing this as we learning python
-        response = os.system(f"ping {ping_command} {ip}")
-        if response == 0 :
+        response = subprocess.run(
+            ["ping",ping_command,"1",ip],
+            capture_output = True,
+            text= True
+            )
+      
+        if response.returncode == 0 :
        # print(ip_list ,"is reachable")
             ip_list.append(ip)
-            print(ip_list," are reachable")
+            print(ip," are reachable")
         # delete last part of the addres so we can make a network address
         # Have to the add a zero then add that zro to our network address
-    return ip_list 
+        return ip_list 
 
 def get_network_address(ip):
     parts = ip.split(".")
