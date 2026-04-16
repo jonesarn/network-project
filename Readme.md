@@ -7,7 +7,7 @@ This project is a Python-based network scanner designed to identify active devic
 - Scans a subnet for active IP addresses
 - Identifies reachable devices using ICMP (ping)
 - Converts discovered IPs into their network address
-- Cross-platform support (Windows & macOS)
+- Cross-platform support (Windows/Linux & macOS)
 
 ## How It Works
 The script loops through a defined IP range and sends a ping request to each address. If a response is received, the IP is stored.
@@ -28,6 +28,7 @@ This helped reinforce real-world subnetting concepts and network structure.
 - Build UI using C# (.NET)
 
 ## Tech Stack
+- C#
 - Python
 - OS / Platform module
 - Basic networking (ICMP, subnetting)
