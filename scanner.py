@@ -1,4 +1,3 @@
-import os
 import platform
 import subprocess
 
@@ -26,9 +25,7 @@ def scan_network():
        # print(ip_list ,"is reachable")
             ip_list.append(ip)
             print(ip," are reachable")
-        # delete last part of the addres so we can make a network address
-        # Have to the add a zero then add that zro to our network address
-        return ip_list 
+            return ip_list 
 
 def get_network_address(ip):
     parts = ip.split(".")
@@ -38,7 +35,7 @@ def get_network_address(ip):
     print("Network Adress: ",network_address)
     return network_address
 ## Now lets add our mac address
-   
+
 def get_mac_address(ip_list):
     arp_output = subprocess.getoutput("arp -a")
     lines = arp_output.split("\n")
@@ -51,9 +48,8 @@ def get_mac_address(ip_list):
                 parts = line.split()
                 mac = parts[3]
                 ip_mac[ip]= mac
-        return ip_mac
-    
-
+                return ip_mac
+         
 ## How this runs is I call unto scan network. This scan network allows you to see every IP address availaible in my private etwork
 ### I then use that to show my network address. They should all be the same so it list every device then shows the network address
 ips = scan_network()  
@@ -64,7 +60,7 @@ if ips:
 macs = get_mac_address(ips)
 print(macs)  
      
-
+# Cnt access nat at work. WOrk on project at home due to network securiy
 
 
 
